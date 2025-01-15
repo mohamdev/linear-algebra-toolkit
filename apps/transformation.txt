@@ -1,0 +1,9 @@
+# Transformation Parameters
+Rotation Matrix (R):
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 1.000000
+Translation Vector (d):
+1.000000 2.000000 3.000000
+Scale Factor (s): 1.000000
+RMS Error: 0.100000

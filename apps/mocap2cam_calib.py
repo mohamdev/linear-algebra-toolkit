@@ -44,11 +44,14 @@ lstm_mks_dict, _ = read_mks_data(lstm_df)
 mks_mocap = get_mks_array_from_dict(mocap_mks_dict[0])
 mks_lstm = get_mks_array_from_dict(lstm_mks_dict[0])
 
+
 print("-- Soder --")
 R, d, rms = soder(mks_mocap, mks_lstm)
 print("R:\n", R)
 print("d:\n", d)
 print("rms:\n", rms)
+
+save_transformation("../data/soder.txt", R, d, 1.0, rms)
 
 print("-- Challis --")
 R, d, s, rms = challis(mks_mocap, mks_lstm)
@@ -56,5 +59,7 @@ print("R:\n", R)
 print("d:\n", d)
 print("scale factor:\n", s)
 print("rms:\n", rms)
+
+save_transformation("../data/challis.txt", R, d, 1.0, rms)
 
 # print(np.shape(mocap_mks_dict[0]['r.ASIS_study']))
