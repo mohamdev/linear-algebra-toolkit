@@ -31,10 +31,15 @@ position = []
 for p in position_names:
     position = position + [f"{p}_x",f"{p}_y",f"{p}_z"]
 
-mocap_df = pd.read_csv("/root/workspace/ros_ws/src/rt-cosmik/output/test1/barycenter_raw.csv", usecols=mks_features_names).values
-postion_aruco = pd.read_csv("/root/workspace/ros_ws/src/rt-cosmik/output/test1/pose_aruco.csv", usecols=position).values
-mocap_df = mocap_df [:15]
-postion_aruco = postion_aruco [:15]
+
+no_test = 4
+mocap_df = pd.read_csv(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/barycenter_raw.csv", usecols=mks_features_names).values
+postion_aruco = pd.read_csv(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/pose_aruco.csv", usecols=position).values
+# mocap_df = pd.read_csv("/root/workspace/ros_ws/src/rt-cosmik/output/aruco_pose_cam1.csv", usecols=position).values
+# postion_aruco = pd.read_csv("/root/workspace/ros_ws/src/rt-cosmik/output/aruco_pose_cam2.csv", usecols=position).values
+# n_imgs = 280
+# mocap_df = mocap_df [:n_imgs]
+# postion_aruco = postion_aruco [:n_imgs]
 mocap_df = np.array(mocap_df)
 postion_aruco = np.array(postion_aruco)
 
@@ -52,7 +57,7 @@ print("R:\n", R)
 print("d:\n", d)
 print("rms:\n", rms)
 
-save_transformation("/root/workspace/ros_ws/src/rt-cosmik/output/test1/soder.txt", R, d, 1.0, rms)
+save_transformation(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/soder.txt", R, d, 1.0, rms)
 
 print("-- Challis --")
 R, d, s, rms = challis(mocap_df, postion_aruco)
