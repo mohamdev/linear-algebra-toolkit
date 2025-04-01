@@ -13,11 +13,10 @@ position = []
 for p in position_names:
     position = position + [f"{p}_x",f"{p}_y",f"{p}_z"]
 
-
 no_test = "rs"
-
 mocap_df = pd.read_csv(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/barycenter_raw.csv", usecols=mks_features_names).values
 postion_aruco = pd.read_csv(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/pose_aruco.csv", usecols=position).values
+res_file = f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/soder.txt"
 
 mocap_df = np.array(mocap_df)
 postion_aruco = np.array(postion_aruco)
@@ -29,7 +28,7 @@ print("R:\n", R)
 print("d:\n", d)
 print("rms:\n", rms)
 
-save_transformation(f"/root/workspace/ros_ws/src/rt-cosmik/output/test{no_test}/soder.txt", R, d, 1.0, rms)
+save_transformation(res_file, R, d, 1.0, rms)
 
 print("-- Challis --")
 R, d, s, rms = challis(postion_aruco,mocap_df)
